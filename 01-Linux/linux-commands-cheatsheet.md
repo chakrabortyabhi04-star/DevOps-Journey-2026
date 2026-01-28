@@ -34,3 +34,32 @@
 * `ping 8.8.8.8`: Check connectivity to the internet.
 * `curl -v http://localhost`: Fetch a URL and see headers (Debug APIs).
 * `netstat -tulpn`: Lists all **Listening Ports** and the PID of the program using them. (e.g., checks if Nginx is actually listening on port 80).
+
+Part 1: The Interview "Heat" Answers
+Q1: The Log File Scenario
+
+Question: The app is crashing. The log file is 10GB. How do you watch new error lines appear in real-time?
+
+Ideal Answer: "I would use tail -f error.log. This 'follows' the file and prints new lines to the screen as they are written. If the log is moving too fast to read, I would pipe it into grep to filter only for errors: tail -f error.log | grep 'ERROR'."
+
+Q2: The Disk Space Scenario
+
+Question: Disk is 99% full. How do you find exactly which folder is the culprit?
+
+Ideal Answer: "I would use the du (Disk Usage) command. Specifically, I run du -h --max-depth=1 / | sort -hr.
+
+du -h: Shows sizes in human-readable format (GB, MB).
+
+--max-depth=1: Only shows the top-level folders so I don't get flooded with millions of files.
+
+sort -hr: Sorts the output so the biggest folders appear at the top."
+
+Q3: The Network Scenario
+
+Question: Browser says "Connection Refused" on port 80. How do you check if the server is actually listening?
+
+Ideal Answer: "I would use netstat -tulpn (or ss -tulpn on newer systems).
+
+This lists all TCP/UDP Listening Ports and the Numeric port values.
+
+I would specifically look for a line like 0.0.0.0:80. If it's missing, the web server isn't running or isn't configured to listen on that port."
