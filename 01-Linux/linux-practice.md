@@ -24,3 +24,14 @@ abhishek@Abhishek:~$
 **Command:** `journalctl -u cron -n 5`
 -- No entries --
 * **Output:** I can now see the actual system logs for the scheduler service.Main PID: 207 (cron)
+## 4. Advanced Checks (Added Practice)
+**Command:** `pgrep -a cron`
+* **Output:** 
+* **Why:** Quickly finds the PID without searching through `top`.
+
+**Command:** `systemctl is-active cron`
+* **Output:** active
+* **Why:** Great for automated scripts to check health (returns "active" or "inactive").
+
+**Command:** `tail -n 10 /var/log/syslog`
+* **Output:** 
